@@ -1,0 +1,17 @@
+# 1. FROM: Menentukan Base Image (Sistem operasi + Compiler Go siap pakai)
+FROM golang:1.22-bookworm
+
+# 2. WORKDIR: Membuat & masuk ke folder kerja '/app' di dalam kontainer
+WORKDIR /app
+
+# 3. COPY: Menyalin seluruh file dari folder 'backend/' di laptop ke '/app' di dalam kontainer
+COPY . .
+
+# 4. RUN: Menjalankan perintah kompilasi kode menjadi file aplikasi bernama 'server-app'
+RUN go build -o server-app main.go
+
+# 5. EXPOSE: Mendokumentasikan bahwa kontainer ini mendengarkan port 8080
+EXPOSE 8080
+
+# 6. CMD: Perintah yang otomatis dijalankan saat kontainer dinyalakan
+CMD ["./server-app"]

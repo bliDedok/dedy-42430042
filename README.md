@@ -40,3 +40,42 @@ tanpa mengubah kode sumber.
 ![Server native berjalan](docs/screenshots/sc01-native-running.png)
 
 ![Benturan port dan respons server](docs/screenshots/sc01-native-port-conflict.png)
+
+## Tahap 2 — Dockerfile Single-Stage
+
+Image dibangun menggunakan Dockerfile.single dengan base image
+golang:1.22-bookworm.
+
+### Hasil pengujian
+
+- Nama image: `backend-api:42430042-single`
+- Image ID: `febd81bfce74`
+- Disk Usage: `1.32 GB`
+- Content Size: `311 MB`
+- `kontainer-pertama` menggunakan pemetaan port `8081:8080`,
+  dengan Container ID `d3371e2a0ae8`.
+- `kontainer-kedua` menggunakan pemetaan port `8082:8080`,
+  dengan Container ID `cac29d910eb3`.
+- Kedua container berstatus Up.
+- Kedua endpoint `/healthz` memberikan status `healthy`,
+  nama I Made Dedy Wanditya, dan NIM 42430042.
+
+### Analisis
+
+Kedua container dapat menggunakan port internal 8080 karena
+masing-masing memiliki lingkungan jaringan terpisah.
+Akses dari Mac menggunakan port berbeda, yaitu 8081 dan 8082,
+sehingga pemetaan port pada host tidak bentrok.
+
+Image single-stage berukuran besar karena lingkungan Debian,
+compiler Go, dependensi, dan berkas hasil build masih berada
+dalam image akhir.
+
+Docker menampilkan Disk Usage dan Content Size sebagai ukuran
+yang berbeda. Disk Usage mencakup konten terkompresi dan hasil
+ekstraksinya. Perbandingan dengan image multi-stage nantinya
+akan menggunakan jenis ukuran yang sama.
+
+### Bukti
+
+![Bukti Tahap 2 Single-Stage](docs/screenshots/sc02-tahap2-single-stage.png)
