@@ -4,7 +4,7 @@
 - **NIM**: 42430042
 - **Kelas / Prodi**: S1 Teknologi Informasi – UNDIKNAS Denpasar
 - **Tautan Branch GitHub**: https://github.com/bliDedok/dedy-42430042/tree/lab1-2/42430042-dedy
-- **Nama Rekan Peer-Reviewer**: 
+- **Nama Rekan Peer-Reviewer**: Salsabila Nur Shafa (42430040)
 
 ## Tabel Komparasi Eksperimen Individu
 
@@ -322,3 +322,27 @@ digunakan menampilkan `:0`. Pemeriksaan tambahan menggunakan
 port database tidak memiliki pemetaan ke port host.
 
 ## Bukti Audit Silang (Peer-Review) di GitHub
+
+- **Tautan Pull Request (PR)**: https://github.com/bliDedok/dedy-42430042/pull/1
+- **Reviewer**: Salsabila Nur Shafa
+- **NIM Reviewer**: 42430040
+- **Akun GitHub**: salsa-rgb
+- **Status Review**: Approved
+- **Tanggal Review**: 16 Oktober 2026
+
+### Ringkasan Catatan Peer-Reviewer
+
+Reviewer meninjau kode, konfigurasi Docker, README, dan bukti
+pengujian yang dilampirkan. Catatan review menyatakan bahwa:
+
+- Image multi-stage memenuhi target ukuran di bawah 100 MB
+  dan menggunakan pengguna non-root.
+- Bukti pengujian menunjukkan data tetap tersimpan setelah
+  kontainer dibuat ulang.
+- Penggunaan .env, .gitignore, dan .env.example sudah diterapkan.
+- Jaringan frontend dan database dipisahkan, port database tidak
+  dipublikasikan ke host, dan ketiga kontainer berstatus healthy.
+- README memuat perbandingan eksperimen, analisis troubleshooting,
+  serta bukti setiap tahap.
+
+Reviewer menyetujui PR tanpa meminta perubahan pada review tersebut.
